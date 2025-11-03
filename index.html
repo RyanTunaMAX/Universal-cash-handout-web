@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ATM 地圖儀表板</title>
+
+  <!-- 外掛庫樣式 -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet"/>
+
+  <!-- 站內樣式 -->
+  <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="layout">
+<header>
+  <h1>普發金ATM大解析</h1>
+</header>
+
+
+  <!-- 左：控制＋圖表 -->
+  <section class="card left">
+    <div class="controls">
+      <div>
+        <label for="city">縣市</label>
+        <select id="city"></select>
+      </div>
+      <div>
+        <label for="bank">銀行</label>
+        <select id="bank"></select>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="chip">
+        <div id="kpiTotal" class="kpi-number">–</div>
+        <div class="kpi-caption">ATM 數（篩選後）</div>
+      </div>
+      <div class="chip">
+        <div id="kpiBanks" class="kpi-number">–</div>
+        <div class="kpi-caption">銀行家數（篩選後）</div>
+      </div>
+    </div>
+
+    <div class="charts">
+      <!-- 圖一：服務型態總值（柱狀） -->
+      <div id="chartServiceByBank" aria-label="服務型態總值 - 柱狀圖"></div>
+      <!-- 圖二：無障礙服務總值（紅黑玫瑰圖） -->
+      <div id="chartAccessibleSummary" aria-label="無障礙服務總值 - 玫瑰圖"></div>
+      <!-- 圖三：裝設型態 Treemap -->
+      <div id="chartInstallTypeTreemap" aria-label="裝設型態 - Treemap"></div>
+      <!-- 圖四：裝設地點類別 Sunburst -->
+      <div id="chartLocationSunburst" aria-label="裝設地點類別 - Sunburst"></div>
+    </div>
+
+    <div class="footerLink">
+      <a class="small" target="_blank" href="https://www.mapbox.com/">Mapbox</a>
+    </div>
+  </section>
+
+  <!-- 右：地圖 -->
+  <section id="map" class="card right" aria-label="ATM 地圖"></section>
+</div>
+
+<!-- 外掛庫腳本 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+<!-- 主程式（圖表＋地圖＋篩選） -->
+<script src="chart.js"></script>
+</body>
+</html>

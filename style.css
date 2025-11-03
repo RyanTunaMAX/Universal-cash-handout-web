@@ -1,0 +1,60 @@
+:root{
+  --bg:#0b1220; --card:#121a2b; --muted:#9fb3c8; --line:#22304d;
+  --left-width:560px;
+}
+
+/* 基本排版 */
+html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:system-ui,Segoe UI,Roboto}
+.layout{
+  display:grid;
+  grid-template-columns:var(--left-width) 1fr;
+  grid-template-rows:auto 1fr;
+  gap:12px;height:100%;
+  padding:12px;box-sizing:border-box;
+}
+header{grid-column:1/-1;display:flex;align-items:baseline;gap:12px}
+header h1{margin:0;font-size:20px}
+header .sub{font-size:12px;color:var(--muted)}
+
+.card{background:var(--card);border-radius:16px;padding:14px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.left{grid-column:1;grid-row:2}
+.right{grid-column:2;grid-row:2}
+#map{height:45%;border-radius:16px;min-height:320px}
+
+/* 控制區 */
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px}
+select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0f1730;color:#fff}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.chip{background:#0f1730;border:1px solid var(--line);border-radius:12px;padding:10px}
+.kpi-number{font-size:22px;font-weight:700}
+.kpi-caption{font-size:12px;color:#9fb3c8}
+
+/* 圖表容器 */
+.charts {
+  display: grid;
+  grid-template-rows: 360px 360px 360px 420px;
+  gap: 54px;
+}
+#chartInstallTypeTreemap {
+  margin-bottom: -24px; /* 專門拉開 treemap 與旭日圖之間距離 */
+}
+
+
+/* 連結 */
+.footerLink{margin-top:auto}
+a.small{color:var(--muted);font-size:12px;text-decoration:underline}
+
+/* 響應式 */
+@media (max-width:960px){
+  .layout{grid-template-columns:1fr;grid-template-rows:auto auto auto}
+  .left,.right{grid-column:1;grid-row:auto}
+  .charts{grid-template-rows:320px 320px}
+}
+
+/* 防止內容溢出與層級問題 */
+.left{position:relative;z-index:2;overflow:clip}
+.right{position:relative;z-index:1}
+#map .mapboxgl-canvas{border-radius:inherit}
